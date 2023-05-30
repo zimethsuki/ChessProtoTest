@@ -55,9 +55,15 @@ public class BoardManager : MonoBehaviour
             _tileMap[i, j].SetHighlight(false);
 
         if (positions == null) return;
-
+        var targetHasPiece = false;
+        
         foreach (var pos in positions)
             if (pos.x < boardWidth && pos.y < boardLenght && pos is { x: >= 0, y: >= 0 })
-                _tileMap[pos.x, pos.y].SetHighlight(true);
+            {
+               var tempBool = _tileMap[pos.x, pos.y].SetHighlight(true);
+               if (!targetHasPiece) targetHasPiece = tempBool;
+            }
+
+        print($"target has piecee? {targetHasPiece}");
     }
 }
