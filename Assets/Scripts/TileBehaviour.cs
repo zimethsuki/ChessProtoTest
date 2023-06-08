@@ -5,10 +5,10 @@ using UnityEngine.UIElements;
 public class TileBehaviour : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private SpriteRenderer tileImage;
+    private bool _canBeTarget;
     private Color _normalColor;
     private PieceBehaviour _occupingPiece;
     private Vector2 _tilePos;
-    private bool _canBeTarget;
     [SerializeField] private Button tileClick;
 
 
@@ -17,8 +17,6 @@ public class TileBehaviour : MonoBehaviour, IPointerClickHandler
         if (_occupingPiece == null)
         {
             Actions.CheckPieceMove.Invoke(null);
-            if(_canBeTarget)
-                
             return;
         }
 
@@ -41,8 +39,7 @@ public class TileBehaviour : MonoBehaviour, IPointerClickHandler
 
     public bool SetHighlight(bool highlight)
     {
-            tileImage.color = highlight ? Color.red : _normalColor;
-            return _occupingPiece;
-        
+        tileImage.color = highlight ? Color.red : _normalColor;
+        return _occupingPiece;
     }
 }
